@@ -3,7 +3,7 @@
   <parent>
     <groupId>se.jiderhamn.classloader-leak-prevention</groupId>
     <artifactId>classloader-leak-prevention-parent</artifactId>
-    <version>2.5.1-SNAPSHOT</version>
+    <version>2.6.2-SNAPSHOT</version>
   </parent>
 
   <artifactId>classloader-leak-prevention-core</artifactId>
@@ -110,6 +110,20 @@
       <version>9.4-1201-jdbc41</version>
       <scope>test</scope>
     </dependency>
+    <!-- Test that MOXy leaks are prevented -->
+    <dependency>
+      <groupId>org.eclipse.persistence</groupId>
+      <artifactId>org.eclipse.persistence.moxy</artifactId>
+      <version>2.7.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Test that Jackson leaks are prevented -->
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>2.9.2</version>
+      <scope>test</scope>
+    </dependency>
     
     <!-- Example dependency for test Oracle JDBC -->
     <!--
@@ -120,6 +134,41 @@
       <scope>test</scope>
     </dependency>
     -->
+
+    <!-- Internal APIs that have been removed from the JDK in java 11. -->
+    <!-- Used for testing SAAJEnvelopeFactoryParserPoolCleanUp. -->
+    <dependency>
+      <groupId>com.sun.xml.messaging.saaj</groupId>
+      <artifactId>saaj-impl</artifactId>
+      <version>1.4.0</version>
+      <scope>provided</scope>
+    </dependency>
+    
+    <!-- Internal APIs that have been removed from the JDK in java 11. Used for MoxyCleanUpTest -->
+    <dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+      <version>2.2.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-core</artifactId>
+      <version>2.2.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>2.2.11</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>javax.activation</groupId>
+      <artifactId>activation</artifactId>
+      <version>1.1.1</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <!-- Create artifact (jar) with test classes https://maven.apache.org/guides/mini/guide-attached-tests.html -->
